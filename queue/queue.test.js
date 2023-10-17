@@ -1,4 +1,5 @@
 const Queue = require('./queue');
+
 describe('Queue', () => {
   it('Should Identify Queue as class', () => {
     expect(typeof Queue.prototype.constructor).toEqual('function');
@@ -27,5 +28,21 @@ describe('Queue', () => {
     expect(q.remove()).toEqual(2);
     expect(q.remove()).toEqual(3);
     expect(q.remove()).toEqual(undefined);
+  });
+
+  it('should have a peek function', () => {
+    const q = new Queue()
+    expect(typeof q.peek).toBe('function');
+  });
+
+  it('should return the first element to be removed without removing it', () => {
+    const q = new Queue();
+    q.add('Hello');
+    q.add('World');
+    q.add('From Jest!');
+
+    const result = q.peek();
+    expect(result).toMatch(/Hello/);
+    expect(q.data.length).toEqual(3);
   });
 });
