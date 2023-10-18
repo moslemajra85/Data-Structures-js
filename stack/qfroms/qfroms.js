@@ -25,14 +25,18 @@ class Queue {
   }
 
   remove() {
+    // throw an error in cas we are dealing with an empty queue
     if (!this.s1.peek()) throw new Error('Queue is Empty');
 
+    // empty out stack s1 and fill up stack s2
     while (this.s1.peek()) {
       this.s2.push(this.s1.pop());
     }
 
+    // remove the first record that has been entered to S1
     const record = this.s2.pop();
 
+    // empty out stack s2 and fill up stack s1
     while (this.s2.peek()) {
       this.s1.push(this.s2.pop());
     }
@@ -41,13 +45,18 @@ class Queue {
   }
 
   peek() {
+    // throw an error in cas we are dealing with an empty queue
     if (!this.s1.peek()) throw new Error('Queue is Empty');
 
+    // empty out stack s1 and fill up stack s2
     while (this.s1.peek()) {
       this.s2.push(this.s1.pop());
     }
 
+    // get the first record that has been entered to S1
     const record = this.s2.peek();
+
+    // empty out stack s2 and fill up stack s1
 
     while (this.s2.peek()) {
       this.s1.push(this.s2.pop());
